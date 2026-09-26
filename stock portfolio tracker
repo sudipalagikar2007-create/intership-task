@@ -1,0 +1,64 @@
+# CodeAlpha Internship - Task 2
+# Stock Portfolio Tracker
+
+# Hardcoded stock prices
+stock_prices = {
+    "AAPL": 180,
+    "TSLA": 250,
+    "GOOGL": 150,
+    "MSFT": 400,
+    "AMZN": 180
+}
+
+print("====================================")
+print("       STOCK PORTFOLIO TRACKER")
+print("====================================")
+
+total_investment = 0
+
+# Display available stocks
+print("\nAvailable Stocks:")
+for stock, price in stock_prices.items():
+    print(stock, "=", "$", price)
+
+# Ask user for number of stocks
+number_of_stocks = int(input("\nHow many different stocks do you want to buy? "))
+
+# Take stock details
+for i in range(number_of_stocks):
+
+    stock = input("\nEnter stock name: ").upper()
+
+    if stock in stock_prices:
+
+        quantity = int(input("Enter quantity: "))
+
+        price = stock_prices[stock]
+        investment = price * quantity
+
+        total_investment += investment
+
+        print("Stock Price: $", price)
+        print("Quantity:", quantity)
+        print("Investment: $", investment)
+
+    else:
+        print("❌ Stock not available.")
+
+# Display total investment
+print("\n====================================")
+print("Total Investment: $", total_investment)
+print("====================================")
+
+# Save result to a text file
+save = input("Do you want to save the result? (yes/no): ").lower()
+
+if save == "yes":
+    with open("portfolio_result.txt", "w") as file:
+        file.write("Stock Portfolio Tracker\n")
+        file.write("=======================\n")
+        file.write("Total Investment: $" + str(total_investment))
+
+    print("✅ Result saved in portfolio_result.txt")
+
+print("Thank you!")
